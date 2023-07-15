@@ -18,10 +18,10 @@ export default async function (req: NowRequest, res: NowResponse) {
   }
 
   try {
-    const r = await axios.get(<string>url, {
-      responseType: "arraybuffer",
-    })
-    res.end(r.data)
+    const responce = await axios.get(<string>url, {responseType: "arraybuffer", headers: {"Content-Type": "image/jpeg"}});
+    const data = responce.data;
+
+    res.status(200).end(data);
   } catch (e) {
     errorResponce(res);
   }
