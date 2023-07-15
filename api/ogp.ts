@@ -29,9 +29,7 @@ export default async function (req: NowRequest, res: NowResponse) {
       .reduce((pre, ogp) => {
         const property = ogp.getAttribute("property").trim().replace("og:", "");
         const content = ogp.getAttribute("content");
-        console.log(content)
         pre[property] = content;
-        console.log(pre)
         return pre;
       }, {});
     res.status(200).json(ogp);
