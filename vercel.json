@@ -1,9 +1,9 @@
 {
   "routes": [
     {
-      "src": "/api/ogp",
+      "src": "/api/image",
       "methods": ["GET"],
-      "dest": "/api/ogp",
+      "dest": "/api/image",
       "headers": {
         "Access-Control-Allow-Origin": "*"
       }

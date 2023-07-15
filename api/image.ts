@@ -18,21 +18,10 @@ export default async function (req: NowRequest, res: NowResponse) {
   }
 
   try {
-    const responce = await axios.get(<string>url);
-    const data = responce.data;
-    const dom = new JSDOM(data);
-    const meta = dom.window.document.querySelectorAll("head > meta");
-
-    // metaからOGPを抽出し、JSON形式に変換する
-    const ogp = Array.from(meta)
-      .filter((element) => element.hasAttribute("property"))
-      .reduce((pre, ogp) => {
-        const property = ogp.getAttribute("property").trim().replace("og:", "");
-        const content = ogp.getAttribute("content");
-        pre[property] = content;
-        return pre;
-      }, {});
-    res.status(200).json(ogp);
+    const r = await axios.get(<string>url, {
+      responseType: "arraybuffer",
+    })
+    res.end(r.data)
   } catch (e) {
     errorResponce(res);
   }
