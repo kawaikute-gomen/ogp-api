@@ -1,8 +1,6 @@
 import { NowRequest, NowResponse } from "@vercel/node";
 import axios from "axios";
 import { JSDOM } from "jsdom";
-import sharp from "sharp"
-
 
 /**
  * OGPタグを取得して、そのcontentをJSON形式で返す.
@@ -20,20 +18,10 @@ export default async function (req: NowRequest, res: NowResponse) {
   }
 
   try {
-    const r = await axios.get(<string>url, {responseType: "arraybuffer", headers: {"Content-Type": "image/jpeg"}});
-    const buf = r.data;
-    const item = await sharp(buf).resize(800, null, {
-      fit: "inside",
-      withoutEnlargement: true,
-    }).jpeg({
-      quality: 80,
-      progressive: true,
-    }).toBuffer()
+    const responce = await axios.get(<string>url, {responseType: "arraybuffer", headers: {"Content-Type": "image/jpeg"}});
+    const data = responce.data;
 
-    Object.entries(r.headers).map(([k, v]) => {
-      res.setHeader(k, v)
-    })
-    res.status(200).end(item);
+    res.status(200).end(data);
   } catch (e) {
     errorResponce(res);
   }
