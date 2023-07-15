@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "@types/jsdom": "^16.2.3",
-    "axios": "^0.20.0",
-    "jsdom": "^16.4.0"
+    "axios": "^1.4.0",
+    "jsdom": "^16.4.0",
+    "sharp": "^0.32.3"
   }
 }
