@@ -18,7 +18,11 @@ export default async function (req: NowRequest, res: NowResponse) {
   }
 
   try {
-    const responce = await axios.get(<string>url);
+    const response = await axios.get(<string>url, {
+      headers: {
+        "User-Agent": "bot",
+      },
+    });
     const data = responce.data;
     const dom = new JSDOM(data);
     const meta = dom.window.document.querySelectorAll("head > meta");
