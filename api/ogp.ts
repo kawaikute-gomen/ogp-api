@@ -18,7 +18,11 @@ export default async function (req: NowRequest, res: NowResponse) {
   }
 
   try {
-    const response = await axios.get(<string>url);
+    const response = await axios.get(<string>url, {
+      headers: {
+        "User-Agent": "twitterBot/1.0",
+      },
+    });
     const data = responce.data;
     const dom = new JSDOM(data);
     const meta = dom.window.document.querySelectorAll("head > meta");
