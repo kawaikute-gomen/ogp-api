@@ -18,7 +18,7 @@ export default async function (req: NowRequest, res: NowResponse) {
   }
 
   try {
-    const response = await axios.get(<string>url);
+    const responce = await axios.get(<string>url);
     const data = responce.data;
     const dom = new JSDOM(data);
     const meta = dom.window.document.querySelectorAll("head > meta");
